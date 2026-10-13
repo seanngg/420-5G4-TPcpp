@@ -9,10 +9,10 @@ Book::Book() : title(""), author(""), isbn(""), isAvailable(true), borrowerId(""
 
 //constructeur avec parametre : un nouveau livre est disponible
 Book::Book(const string& title, const string& author, const string& isbn) {
-    this -> title = title,
-    this -> author = author,
-    this -> isbn = isbn,
-    this -> isAvailable = true,
+    this -> title = title;
+    this -> author = author;
+    this -> isbn = isbn;
+    this -> isAvailable = true;
     this -> borrowerId = "";
 }
 
@@ -43,11 +43,12 @@ void Book::returnBook(){
     borrowerId.clear();
 }
 
-string Book::toString() const{
-    string result = "Titre:  \n" + title+"Auteur:  \n" +author + "ISBN:  \n" +isbn
-    +"Statut:  \n"+ (isAvailable ? "Disponible" : "Emprunté");
-    if(!isAvailable && !borrowerId.empty()){
-        result += "(par " + borrowerId +")";
+// Affichage lisible
+string Book::toString() const {
+    string result = "Titre: " + title + "\nAuteur: " + author + "\nISBN: " + isbn +
+                    "\nStatut: " + (isAvailable ? "Disponible" : "Emprunté");
+    if (!isAvailable && !borrowerId.empty()) {
+        result += " (par " + borrowerId + ")";
     }
     return result;
 }
