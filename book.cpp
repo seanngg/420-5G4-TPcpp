@@ -30,3 +30,27 @@ void Book::setISBN(const string& isbn) { this->isbn = isbn; }
 void Book::setAvailability(bool available) {isAvailable = available;}
 void Book::setBorrowerId(const string& id) {borrowerId = id;}
 
+// Emprunter un livre
+void Book::checkOut(const string& borrowerId){
+    isAvailable = false;
+    this->borrowerId = borrowerId;
+}
+
+
+//Retour d'un livre
+void Book::returnBook(){
+    isAvailable = true;
+    borrowerId.clear();
+}
+
+string Book::toString() const{
+
+}
+
+string Book::toFileFormat() const{
+
+}
+
+void Book::fromFileFormat(const string& line){
+
+}
