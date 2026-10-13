@@ -52,11 +52,29 @@ string Book::toString() const {
     }
     return result;
 }
-
+// Format du fichier titre|auteur|isbn|disponibilite(0/1)|idEmprunteur
 string Book::toFileFormat() const{
-    return "";
+    return title+"|"+author+"|"+isbn+"|"+(isAvailable ? "1":"0")+"|"+borrowerId;
 }
 
+// Lecture d'une ligne du fichier
 void Book::fromFileFormat(const string& line){
-    string lime = line;
+    
+    // fichier sous windows terminent par \r\n
+    string clean = line;
+    if(!clean.empty() && clean.back()=='\r'){
+        clean.pop_back();
+    }
+
+    // coupe string clean quand on trouve |
+    stringstream ss (clean);
+    string availStr;
+
+    getline(ss, title, '|');
+    getline(ss, author, '|');
+    getline(ss, isbn, '|');
+    getline(ss, availStr, '|');
+    getline(ss, borrowerId, '|');
+
+    isAvailable = (availStr != "0");
 }
