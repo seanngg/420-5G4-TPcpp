@@ -44,13 +44,18 @@ void Book::returnBook(){
 }
 
 string Book::toString() const{
-
+    string result = "Titre:  \n" + title+"Auteur:  \n" +author + "ISBN:  \n" +isbn
+    +"Statut:  \n"+ (isAvailable ? "Disponible" : "Emprunté");
+    if(!isAvailable && !borrowerId.empty()){
+        result += "(par " + borrowerId +")";
+    }
+    return result;
 }
 
 string Book::toFileFormat() const{
-
+    return "";
 }
 
 void Book::fromFileFormat(const string& line){
-
+    string lime = line;
 }
