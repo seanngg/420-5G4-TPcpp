@@ -33,6 +33,7 @@ void displayMenu() {
     cout << "11. Statistiques de la Bibliothèque\n";
     cout << "12. Sauvegarder les Données\n";
     cout << "13. Créer une Sauvegarde\n";
+    cout << "14. Afficher les Livres Triés (titre ou auteur)\n";
     cout << "0.  Quitter\n";
     cout << "======================================================\n";
     cout << "Entrez votre choix : ";
@@ -247,7 +248,20 @@ int main(int argc, char* argv[]) {
                 pauseForInput();
                 break;
             }
+            case 14: {
+                string sortChoice = getInput("Trier par titre(1) ou auteur(2): ");
+
+                if(sortChoice == "1"){
+                    library.displaySortedBooks(true);
+                } else if( sortChoice == "2"){
+                    library.displaySortedBooks(false);
+                } else{
+                    cout << "Choix de tri invalide. \n";
+                }
+                pauseForInput();
+                break;
             
+            }
             case 0: // Exit
                 cout << "Sauvegarde des données avant la fermeture...\n";
                 fileManager.saveLibraryData(library);

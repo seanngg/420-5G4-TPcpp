@@ -237,3 +237,33 @@ string Library::generateUserId() const{
 
     return "USR" + numberText;
 }
+// Met un texte en minuscules pour trier 
+static string toLower(string text) {
+    transform(text.begin(), text.end(), text.begin(), ::tolower);
+    return text;
+}
+
+// Affiche tous les livres tries par titre ou par auteur
+void Library::displaySortedBooks(bool byTitle) {
+    if (books.empty()) {
+        cout << "Aucun livre dans la bibliothèque.\n";
+        return;
+    }
+
+    //Copie de la liste des pointeurs 
+    vector<Book*> sorted = getAllBooks();
+
+    //la lambda dit quel livre vient en premier
+    sort(sorted.begin(), sorted.end(), [byTitle](const Book* a, const Book* b) {
+        if (byTitle) {
+            return toLower(a->getTitle()) < toLower(b->getTitle());
+        }
+        return toLower(a->getAuthor()) < toLower(b->getAuthor());
+    });
+    
+    cout << "\n LIVRES TRIÉS PAR " << (byTitle ? "TITRE" : "AUTEUR") << " \n";
+    for (size_t i = 0; i < sorted.size(); ++i) {
+        cout << "\nLivre " << (i + 1) << " :\n";
+        cout << sorted[i]->toString() << "\n";
+    }
+}
