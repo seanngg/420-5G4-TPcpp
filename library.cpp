@@ -202,3 +202,38 @@ int Library::getAvailableBookCount() const {
         });
 }
 int Library::getCheckedOutBookCount() const { return getTotalBooks() - getAvailableBookCount(); }
+
+// Genere le prochain ID : USR + 1
+string Library::generateUserId() const{
+    int maxNumber = 0;
+
+    // Parcourir tous les utilisateurs pour trouver + grand 
+    for (size_t i =0; i< users.size();i++){
+        string id = users[i]->getUserId();
+        //id doit avoir minimum 4 caracteres et commencer avec USR        
+        if(id.size() > 3 && id.substr(0, 3) == "USR"){
+            string numberPart = id.substr(3);
+            try{
+                int number = stoi(numberPart);
+                if(number > maxNumber){
+                    maxNumber = number;
+                }
+            }catch(const exception& e){
+                  cout << "Avertissement : l'ID utilisateur '" << id
+         << "' n'a pas un format valide (USRnnn), il est ignoré.\n";
+            }
+        }
+    
+    }
+    //plus grand num + 1
+    int nextNumber = maxNumber +1;
+    string numberText = to_string(nextNumber);
+
+    if(nextNumber<10){
+        numberText = "00" +numberText;
+    }else if (nextNumber < 100){
+        numberText = "0" + numberText;
+    }
+
+    return "USR" + numberText;
+}

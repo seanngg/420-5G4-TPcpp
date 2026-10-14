@@ -32,7 +32,9 @@ public:
     void addUser(const User& user);
     User* findUserById(const string& userId);
     vector<User*> getAllUsers();
-    
+    string generateUserId() const; // +1 prochain id
+
+
     // Library operations
     bool checkOutBook(const string& isbn, const string& userId);
     bool returnBook(const string& isbn);
