@@ -1,3 +1,8 @@
+#ifndef ACTIVITYLOGGER_H
+#define ACTIVITYLOGGER_H
+
+#include <string>
+
 #include "book.h"
 
 using namespace std;
@@ -16,3 +21,4 @@ public:
     void logBook(const string& action, const Book& book, const string& personName = "");
 
 };
+#endif

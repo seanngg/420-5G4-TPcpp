@@ -43,7 +43,7 @@ public:
     void displayAllBooks();
     void displayAvailableBooks();
     void displayAllUsers();
-    void displaySortedBooks(bool byTitle); 
+    void displaySortedBooks(bool byTitle); // true = par titre, false = par auteur 
 
     // Statistics
     int getTotalBooks() const;
